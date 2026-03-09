@@ -21,3 +21,32 @@ export async function POST(req: Request) {
 
     return Response.json(post)
 }
+
+export async function DELETE(req: Request) {
+    await connectDB()
+
+    const body = await req.json()
+
+    const deletePost = await Post.findByIdAndDelete(body.id)
+
+    return Response.json(deletePost)
+}
+
+export async function PUT(req: Request) {
+    await connectDB()
+
+    const body = await req.json()
+
+    const editPost = await Post.findByIdAndUpdate(
+        body.id,
+        {
+            title: body.title,
+            content: body.content
+        },
+        {
+            new: true
+        }
+    )
+
+    return Response.json(editPost)
+}

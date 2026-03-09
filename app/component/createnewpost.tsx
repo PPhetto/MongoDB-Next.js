@@ -1,27 +1,27 @@
 "use client"
-import React, { useState } from "react"
+import { FormEvent, useState } from "react"
 export default function Createnewpost() {
     const [title,setTitle] = useState("")
     const [content,setContent] = useState("")
 
-    async function hsummid(e: React.FormEvent) {
-        e.preventDefault()
+    async function hsummid(e:FormEvent) {
+      e.preventDefault();
 
-        const res = await fetch("/api/posts", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              title,
-              content
-            })
-        })
+      const res = await fetch("/api/posts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            title,
+            content
+          })
+      })
 
-        setTitle("")
-        setContent("")
+      setTitle("")
+      setContent("")
 
-        location.reload()
+      // location.reload()
     }
     
   return (

@@ -1,8 +1,10 @@
 import { Post } from "@/types/Post"
 import Createnewpost from "./component/createnewpost";
+import Deletepost from "./component/deletepost";
+import Editpost from "./component/editpost";
 
 export default async function Home() {
-  const res = await fetch("/api/posts", {
+  const res = await fetch("http://localhost:3000/api/posts", {
     method: "GET",
     cache: "no-store"
   })
@@ -18,6 +20,14 @@ export default async function Home() {
               <p>Post no. {index + 1}</p>
               <p>Title : {post.title}</p>
               <p>Description : {post.content}</p>
+              <div className="layout-bbt">
+                <div>
+                  <Editpost id={post._id} title={post.title} content={post.content}/>
+                </div>
+                <div>
+                  <Deletepost id={post._id} />
+                </div>
+              </div>
             </li>
           </ul>
         ))}
