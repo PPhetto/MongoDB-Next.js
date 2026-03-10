@@ -3,9 +3,15 @@ import { FormEvent, useState } from "react"
 export default function Createnewpost() {
     const [title,setTitle] = useState("")
     const [content,setContent] = useState("")
+    const [address,setAddress] = useState("")
 
     async function hsummid(e:FormEvent) {
       e.preventDefault();
+
+      if(!address || !title) {
+        alert("Please")
+        return
+      }
 
       const res = await fetch("/api/posts", {
           method: "POST",
@@ -14,7 +20,8 @@ export default function Createnewpost() {
           },
           body: JSON.stringify({
             title,
-            content
+            content,
+            address,
           })
       })
 
@@ -35,6 +42,13 @@ export default function Createnewpost() {
             value={content}
             placeholder="content"
             onChange={(e) => setContent(e.target.value)}
+        />
+        <input
+          value={address}
+          placeholder="address"
+          onChange={(a) => {
+            setAddress(a.target.value)
+          }}
         />
         <button type="submit">
             Create

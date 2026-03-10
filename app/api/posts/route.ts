@@ -16,7 +16,8 @@ export async function POST(req: Request) {
 
     const post = await Post.create({
         title: body.title,
-        content: body.content
+        content: body.content,
+        address: body.address
     })
 
     return Response.json(post)

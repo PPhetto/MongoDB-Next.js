@@ -2,6 +2,7 @@ export type Post = {
     _id: string
     title: string
     content: string
+    address: string
 }
 
 export type Propdelete = {
