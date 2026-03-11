@@ -13,6 +13,10 @@ export default function Createnewpost() {
         return
       }
 
+      const userId = localStorage.getItem("userId")
+
+      console.log("userId:", userId)
+
       const res = await fetch("/api/posts", {
           method: "POST",
           headers: {
@@ -22,11 +26,13 @@ export default function Createnewpost() {
             title,
             content,
             address,
+            userId,
           })
       })
 
       setTitle("")
       setContent("")
+      setAddress("")
 
       // location.reload()
     }

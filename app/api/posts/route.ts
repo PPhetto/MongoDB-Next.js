@@ -1,10 +1,21 @@
 import { connectDB } from "@/lib/mongodb";
 import Post from "@/models/Post"
+import mongoose from "mongoose";
 
-export async function GET() {
+export async function GET(req: Request) {
     await connectDB()
 
-    const posts = await Post.find()
+    const { searchParams } = new URL(req.url)
+
+    const userId = searchParams.get("userId")
+
+    if(!userId) {
+        return Response.json()
+    }
+
+    const posts = await Post.find({
+        user: new mongoose.Types.ObjectId(userId)
+      })
 
     return Response.json(posts)
 }
@@ -14,10 +25,14 @@ export async function POST(req: Request) {
 
     const body = await req.json()
 
+    console.log(body)
+    console.log("USERID:", body.userId)
+
     const post = await Post.create({
         title: body.title,
         content: body.content,
-        address: body.address
+        address: body.address,
+        user: new mongoose.Types.ObjectId(body.userId)
     })
 
     return Response.json(post)

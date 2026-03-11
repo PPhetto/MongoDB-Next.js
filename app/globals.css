@@ -36,11 +36,18 @@ body {
 
 }
 .box-user {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 60%;
   border: 1px solid white;
   align-items: center;
+}
+.logout-layout {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
 }
 .box-user ul {
   display: flex;

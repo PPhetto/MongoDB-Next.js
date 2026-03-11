@@ -1,17 +1,31 @@
+"use client"
 import { Post } from "@/types/Post"
 import Createnewpost from "../component/createnewpost";
 import Deletepost from "../component/deletepost";
 import Editpost from "../component/editpost";
+import AuthCheck from "../component/authCheck";
+import Logout from "../component/logout";
+import { useEffect, useState } from "react";
 
-export default async function Home() {
-  const res = await fetch("http://localhost:3000/api/posts", {
-    method: "GET",
-    cache: "no-store"
-  })
-  const posts: Post[] = await res.json()
+export default function Home() {
+
+  const [posts,setPosts] = useState<Post[]>([])
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId")
+    async function FPost() {
+      const res = await fetch(`/api/posts?userId=${userId}`)
+      const data = await res.json()
+
+      setPosts(data)
+    }
+    FPost()
+  }, [])
 
   return (
     <div className="layout-page">
+      <AuthCheck />
+      <Logout />
       <div className="box-user">
         <h1> Posts </h1>
         {posts.map((post, index) => (
