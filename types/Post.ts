@@ -3,6 +3,7 @@ export type Post = {
     title: string
     content: string
     address: string
+    image?: string
 }
 
 export type Propdelete = {

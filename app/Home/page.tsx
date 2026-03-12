@@ -35,6 +35,9 @@ export default function Home() {
               <p>Title : {post.title}</p>
               <p>Description : {post.content}</p>
               <p>Address : {post.address}</p>
+              {post.image && 
+                <img src={post.image} width={200}/>
+              }
               <div className="layout-bbt">
                 <div>
                   <Editpost id={post._id} title={post.title} content={post.content}/>

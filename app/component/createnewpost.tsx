@@ -1,9 +1,45 @@
 "use client"
-import { FormEvent, useState } from "react"
+import { FormEvent, useRef, useState } from "react"
 export default function Createnewpost() {
     const [title,setTitle] = useState("")
     const [content,setContent] = useState("")
     const [address,setAddress] = useState("")
+    
+    const [image,setImage] = useState("")
+
+    const fileRef = useRef<HTMLInputElement>(null)
+
+    function upfile() {
+      fileRef.current?.click()
+    }
+
+
+    // save to mongodb
+    // function hfile(f: React.ChangeEvent<HTMLInputElement>) {
+    //   const file = f.target.files?.[0]
+    //   if(!file) return
+    
+    //   if(file.size > 2 * 1024 * 1024){
+    //     alert("Image must be smaller than 2MB")
+    //     return
+    //   }
+
+    //   const reader = new FileReader()
+    
+    //   reader.onloadend = () => {
+    //     setImage(reader.result as string)
+    //   }
+    
+    //   reader.readAsDataURL(file)
+    // }
+
+    function hfile(f: React.ChangeEvent<HTMLInputElement>) {
+      const file = f.target.files?.[0]
+      if(!file) return
+
+      const url = URL.createObjectURL(file)
+      setImage(url)
+    }
 
     async function hsummid(e:FormEvent) {
       e.preventDefault();
@@ -26,6 +62,7 @@ export default function Createnewpost() {
             title,
             content,
             address,
+            image,
             userId,
           })
       })
@@ -33,6 +70,7 @@ export default function Createnewpost() {
       setTitle("")
       setContent("")
       setAddress("")
+      setImage("")
 
       // location.reload()
     }
@@ -56,6 +94,27 @@ export default function Createnewpost() {
             setAddress(a.target.value)
           }}
         />
+        <input
+          value={image}
+          placeholder="Url Image"
+          onChange={(f) => {
+            setImage(f.target.value)
+          }}
+        />
+        <button
+          type="button"
+          onClick={upfile}
+        >
+          Upload Image
+        </button>
+        <input
+          type="file"
+          ref={fileRef}
+          style={{display: "none"}}
+          accept="image/*"
+          onChange={hfile}
+        />
+        {image && <img src={image} width={200} />}
         <button type="submit">
             Create
         </button>

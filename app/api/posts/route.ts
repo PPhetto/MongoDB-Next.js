@@ -10,7 +10,10 @@ export async function GET(req: Request) {
     const userId = searchParams.get("userId")
 
     if(!userId) {
-        return Response.json()
+        return Response.json(
+            { message: "userId is required" },
+            { status: 400 }
+        )
     }
 
     const posts = await Post.find({
@@ -32,6 +35,7 @@ export async function POST(req: Request) {
         title: body.title,
         content: body.content,
         address: body.address,
+        image: body.image,
         user: new mongoose.Types.ObjectId(body.userId)
     })
 
