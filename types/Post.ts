@@ -14,10 +14,6 @@ export type Propedit = {
     id: string
     title: string
     content: string
-}
-
-export type CreatePost = {
-    id: string
-    title: string
-    content: string
+    address: string
+    image: string
 }

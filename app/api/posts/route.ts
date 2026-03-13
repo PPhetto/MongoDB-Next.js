@@ -61,7 +61,9 @@ export async function PUT(req: Request) {
         body.id,
         {
             title: body.title,
-            content: body.content
+            content: body.content,
+            address: body.address,
+            image: body.image
         },
         {
             new: true

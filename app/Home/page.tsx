@@ -40,7 +40,7 @@ export default function Home() {
               }
               <div className="layout-bbt">
                 <div>
-                  <Editpost id={post._id} title={post.title} content={post.content}/>
+                  <Editpost id={post._id} title={post.title} content={post.content} address={post.address} image={post.image || ""}/>
                 </div>
                 <div>
                   <Deletepost id={post._id} />

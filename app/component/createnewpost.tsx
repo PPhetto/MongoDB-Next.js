@@ -72,7 +72,7 @@ export default function Createnewpost() {
       setAddress("")
       setImage("")
 
-      // location.reload()
+      location.reload()
     }
     
   return (
