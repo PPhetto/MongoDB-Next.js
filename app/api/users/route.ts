@@ -1,5 +1,14 @@
 import { connectDB } from "@/lib/mongodb";
 import User from "@/models/User";
+import mongoose from "mongoose";
+
+export async function GET() {
+    await connectDB()
+
+    const Users = await User.find()
+
+    return Response.json(Users)
+}
 
 export async function POST(req: Request) {
     await connectDB()

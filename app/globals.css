@@ -71,3 +71,42 @@ body {
 input {
   width: 300px;
 }
+.layout-rankpage {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.box-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  width: 90%;
+  align-items: center;
+}
+.box-list ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.box-list ul li {
+  display: flex;
+  width: 250px;
+  justify-content: center;
+  background-color: silver;
+}
+
+.box-list ul li p {
+  margin-left: 20px;
+  color: white;
+}
+.button-back {
+  display: flex;
+  margin-top: 30px;
+  width: 100px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+}

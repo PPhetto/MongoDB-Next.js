@@ -6,8 +6,16 @@ export default function Logout() {
         localStorage.removeItem("userId")
         router.push("/")
     }
+    async function Rankpage() {
+        router.push("/Rank")
+    }
   return (
     <div className="logout-layout">
+        <button
+            onClick={Rankpage}
+        >
+            Rank
+        </button>
         <button
             onClick={logoutt}
         >
